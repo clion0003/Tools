@@ -23,9 +23,9 @@ echo -e "pty \"pptp "$PPTP_ADDRESS" --nolaunchpppd\"\nlock\nnoauth\nnobsdcomp\nn
 
 echo -e $PPTP_USER"\t"$PPTP_NAME"\t"$PPTP_PASSWD"\t*" >> /etc/ppp/chap-secrets
 
-echo -e "H=\`ps aux | grep \'pppd pty\' | grep -v grep | awk '{print \$14}\'\`" > $ROUTE_FILE
-echo -e "DG=\`route -n | grep UG | awk \'{print \$2}\'\`" >> $ROUTE_FILE
-echo -e "DEV=\`route -n | grep UG | awk \'{print \$8}\'\`" >> $ROUTE_FILE
+echo -e "H=\`ps aux | grep 'pppd pty' | grep -v grep | awk '{print \$14}'\`" > $ROUTE_FILE
+echo -e "DG=\`route -n | grep UG | awk '{print \$2}'\`" >> $ROUTE_FILE
+echo -e "DEV=\`route -n | grep UG | awk '{print \$8}'\`" >> $ROUTE_FILE
 echo -e "route add -host \$H gw \$DG dev \$DEV" >> $ROUTE_FILE
 echo -e "route del default \$DEV" >> $ROUTE_FILE
 echo -e "route add default dev ppp0" >> $ROUTE_FILE
